@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="flavors">
+        <item>Garlic Parmesan</item>
+        <item>Buffalo</item>
+        <item>Salted Egg</item>
+        <item>Plain</item>
+    </string-array>
+</resources>

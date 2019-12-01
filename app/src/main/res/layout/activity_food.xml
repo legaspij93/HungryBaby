@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:id="@+id/singleItemImage"
+        android:src="@drawable/chicken_wings"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/singleItemImage"
+        android:layout_margin="10dp"
+        android:textSize="26sp"
+        android:textColor="#333"
+        android:text="Item Name"
+        android:id="@+id/singleItemName"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/singleItemImage"
+        android:layout_margin="10dp"
+        android:textSize="26sp"
+        android:textColor="#333"
+        android:id="@+id/singleItemPrice"
+        android:text="Price"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/singleItemName"
+        android:layout_margin="15dp"
+        android:textSize="26sp"
+        android:textColor="#333"
+        android:id="@+id/sizeLabel"
+        android:text="Size"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_below="@id/singleItemPrice"
+        android:layout_toStartOf="@id/sizeTwo"
+        android:text="1/2 dozen"
+        android:id="@+id/sizeOne"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_below="@id/singleItemPrice"
+        android:layout_alignParentEnd="true"
+        android:text="1 dozen"
+        android:id="@+id/sizeTwo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sizeLabel"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="26sp"
+        android:textColor="#333"
+        android:id="@+id/flavorLabel"
+        android:text="Flavor"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:layout_margin="15dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/sizeOne"
+        android:entries="@array/flavors"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/flavorLabel"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="26sp"
+        android:textColor="#333"
+        android:id="@+id/qtyLabel"
+        android:text="Qty"/>
+
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/qtyLabel"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="15dp"
+        android:textSize="26sp"
+        android:textColor="#333"
+        android:text="₱"
+        android:id="@+id/priceLabel"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/qtyLabel"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="15dp"
+        android:textSize="26sp"
+        android:textColor="#333"
+        android:text="PRICE"
+        android:id="@+id/price"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priceLabel"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="24sp"
+        android:background="#FE761E"
+        android:text="Add to Cart"
+        android:id="@+id/addToCartBtn"
+        android:onClick="addItem"
+        />
+
+</RelativeLayout>
