@@ -3,16 +3,16 @@ package com.example.hungrybaby.Model;
 public class Item {
 
     private String itemId;
-    private String name;
+    private String itemName;
     private String price;
 //    private String image;
 
     public Item() {
     }
 
-    public Item(String itemId, String name, String price/*, String image*/) {
+    public Item(String itemId, String itemName, String price/*, String image*/) {
         this.itemId = itemId;
-        this.name = name;
+        this.itemName = itemName;
         this.price = price;
 //        this.image = image;
     }
@@ -21,12 +21,12 @@ public class Item {
         return itemId;
     }
 
-    public String getName() {
-        return name;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     public String getPrice() {

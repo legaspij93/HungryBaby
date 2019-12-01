@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hungrybaby.Model.Item;
-import com.example.hungrybaby.ViewHolder.MyAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseRecyclerOptions<Item> options;
-    MyAdapter adapter;
+//    MyAdapter adapter;
     ArrayList<Item> itemArrayList;
 
     @Override
