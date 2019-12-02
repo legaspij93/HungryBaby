@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -60,6 +61,7 @@ public class menuActivity extends AppCompatActivity {
                 });
                 itemViewHolder.price.setText(item.getPrice());
                 itemViewHolder.name.setText(item.getItemName());
+                itemViewHolder.setImageLink(item.getImage());
 
             }
 
@@ -98,4 +100,8 @@ public class menuActivity extends AppCompatActivity {
             adapter.startListening();
     }
 
+    public void viewProfile(View v){
+        Intent intent = new Intent(menuActivity.this, profileActivity.class);
+        startActivity(intent);
+    }
 }

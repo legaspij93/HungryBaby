@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.hungrybaby.Interface.ItemClickListener;
 import com.example.hungrybaby.R;
 import com.example.hungrybaby.foodActivity;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -23,6 +24,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder
     public TextView name,price;
     public ImageView image;
     public View v;
+    String imageLink;
     Button btn;
 
 
@@ -40,9 +42,15 @@ public class ItemViewHolder extends RecyclerView.ViewHolder
                     Intent intent = new Intent(v.getContext(), foodActivity.class);
                     intent.putExtra("NAME", name.getText().toString());
                     intent.putExtra("PRICE", price.getText().toString());
+                    intent.putExtra("IMAGE", imageLink);
                     v.getContext().startActivity(intent);
             }
         });
+    }
+
+
+    public void setImageLink(String imageLink){
+        this.imageLink = imageLink;
     }
 
     public void onClick(final int position)
