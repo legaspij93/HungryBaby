@@ -5,16 +5,16 @@ public class Item {
     private String itemId;
     private String itemName;
     private String price;
-//    private String image;
+    private String image;
 
     public Item() {
     }
 
-    public Item(String itemId, String itemName, String price/*, String image*/) {
+    public Item(String itemId, String itemName, String price, String image){
         this.itemId = itemId;
         this.itemName = itemName;
         this.price = price;
-//        this.image = image;
+        this.image = image;
     }
 
     public String getItemId() {
@@ -37,11 +37,11 @@ public class Item {
         this.price = price;
     }
 
-//    public String getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(String image) {
-//        this.image = image;
-//    }
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

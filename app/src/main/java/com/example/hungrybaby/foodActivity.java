@@ -43,7 +43,7 @@ public class foodActivity extends AppCompatActivity {
 
         String id = databaseCart.push().getKey();
 
-        Item item = new Item(id, name, price);
+        Item item = new Item(id, name, price, price);
         Cart cart = new Cart(name, price);
 
         databaseCart.child(id).setValue(cart);

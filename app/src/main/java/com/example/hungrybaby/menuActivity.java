@@ -6,11 +6,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.hungrybaby.Model.Item;
 import com.example.hungrybaby.ViewHolder.ItemViewHolder;
@@ -18,6 +20,10 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
+import java.io.InputStream;
 
 public class menuActivity extends AppCompatActivity {
 
@@ -41,6 +47,17 @@ public class menuActivity extends AppCompatActivity {
         adapter = new FirebaseRecyclerAdapter<Item, ItemViewHolder>(items) {
             @Override
             protected void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, int i, @NonNull Item item) {
+                Picasso.get().load(item.getImage()).into(itemViewHolder.image, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
                 itemViewHolder.price.setText(item.getPrice());
                 itemViewHolder.name.setText(item.getItemName());
 
