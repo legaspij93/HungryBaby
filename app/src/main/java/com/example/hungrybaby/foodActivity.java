@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,10 +13,13 @@ import com.example.hungrybaby.Model.Cart;
 import com.example.hungrybaby.Model.Item;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 public class foodActivity extends AppCompatActivity {
 
     TextView singleItemName, singleItemPrice, price;
+    ImageView singleItemImage;
 
     DatabaseReference databaseItem, databaseCart;
 
@@ -26,6 +30,7 @@ public class foodActivity extends AppCompatActivity {
 
         singleItemName = findViewById(R.id.singleItemName);
         singleItemPrice = findViewById(R.id.singleItemPrice);
+        singleItemImage = findViewById(R.id.singleItemImage);
         price = findViewById(R.id.price);
 
         databaseCart = FirebaseDatabase.getInstance().getReference("cart");
@@ -35,6 +40,18 @@ public class foodActivity extends AppCompatActivity {
         singleItemName.setText(intent.getStringExtra("NAME"));
         singleItemPrice.setText(intent.getStringExtra("PRICE"));
         price.setText(intent.getStringExtra("PRICE"));
+        String imageLink = intent.getStringExtra("IMAGE");
+        Picasso.get().load(imageLink).into(singleItemImage, new Callback() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public void addItem(View v){
@@ -43,7 +60,7 @@ public class foodActivity extends AppCompatActivity {
 
         String id = databaseCart.push().getKey();
 
-        Item item = new Item(id, name, price);
+        Item item = new Item(id, name, price, price);
         Cart cart = new Cart(name, price);
 
         databaseCart.child(id).setValue(cart);
