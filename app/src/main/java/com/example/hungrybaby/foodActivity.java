@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.hungrybaby.Model.Cart;
 import com.example.hungrybaby.Model.Item;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +25,7 @@ public class foodActivity extends AppCompatActivity {
 
     TextView singleItemName, singleItemPrice, price;
     ImageView singleItemImage;
+    ElegantNumberButton qtyBtn;
 
     DatabaseReference databaseCart;
 
@@ -36,6 +38,7 @@ public class foodActivity extends AppCompatActivity {
         singleItemPrice = findViewById(R.id.singleItemPrice);
         singleItemImage = findViewById(R.id.singleItemImage);
         price = findViewById(R.id.price);
+        qtyBtn = findViewById(R.id.qtyBtn);
 
         databaseCart = FirebaseDatabase.getInstance().getReference("cart");
 
@@ -70,7 +73,7 @@ public class foodActivity extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                     if(dataSnapshot1.child("order").getValue(String.class).equals(name)){
                         int quantity = dataSnapshot1.child("quantity").getValue(Integer.class);
-                        quantity++;
+                        quantity+= Integer.parseInt(qtyBtn.getNumber());
                         found++;
                         dataSnapshot1.getRef().child("quantity").setValue(quantity);
                     }
@@ -80,6 +83,7 @@ public class foodActivity extends AppCompatActivity {
 
                     Cart cart = new Cart(name, price);
 
+                    cart.setQuantity(Integer.parseInt(qtyBtn.getNumber()));
                     databaseCart.child(id).setValue(cart);
                 }
             }
