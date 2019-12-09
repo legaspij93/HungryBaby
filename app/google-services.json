@@ -52,6 +52,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "466579298759-6a02c2guna66grrtakpr1v531lrllq3q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hungrybaby",
+            "certificate_hash": "4b63b00c7296c706c634675456c9630dffbc68ec"
+          }
+        },
+        {
+          "client_id": "466579298759-6m05432t7shnhc0simi0bu6sfbnqr4fn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hungrybaby",
+            "certificate_hash": "627c40fb7fd73eee382f4b2ab4280c3eefb9b913"
+          }
+        },
+        {
           "client_id": "466579298759-vn6qito5lcqlmjdkaka7o98ae3nqh6bg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Cart {
     private String order;
     private String cost;
+    private int quantity;
 
     public Cart(){
 
@@ -16,6 +17,7 @@ public class Cart {
     public Cart(String order, String totalCost){
         this.order = order;
         this.cost = totalCost;
+        quantity = 1;
     }
 
     public String getOrder() {
@@ -24,5 +26,13 @@ public class Cart {
 
     public String getTotalCost() {
         return cost;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

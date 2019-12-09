@@ -52,7 +52,7 @@ public class loginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if(task.isSuccessful()) {
-                    Intent intent = new Intent(loginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(loginActivity.this, menuActivity.class);
                     Toast.makeText(loginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
                     startActivity(intent);
                 }
@@ -65,7 +65,7 @@ public class loginActivity extends AppCompatActivity {
 //                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
 //                    if(dataSnapshot1.child("email").getValue(String.class).equals(email)){
 //                        if(dataSnapshot1.child("password").getValue(String.class).equals(password)) {
-//                            Intent intent = new Intent(loginActivity.this, MainActivity.class);
+//                            Intent intent = new Intent(loginActivity.this, menuActivity.class);
 //                            Toast.makeText(loginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
 //                            startActivity(intent);
 //                        }
