@@ -11,8 +11,11 @@ public class User {
     private String password;
     private String address;
 
-    public User(){
-
+    public User(String name, String email, String number, String address){
+        this.name = name;
+        this.email = email;
+        this.contactNum = number;
+        this.address = address;
     }
 
     public User(String userId, String name, String email, String contactNum, String password, String address){

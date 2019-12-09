@@ -2,6 +2,7 @@ package com.example.hungrybaby;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.hungrybaby.Model.Item;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 //    MyAdapter adapter;
     ArrayList<Item> itemArrayList;
 
+    FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +39,11 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-
+        mAuth = FirebaseAuth.getInstance();
 
         getSupportFragmentManager().beginTransaction().replace(id.fragment_container, new MenuFragment()).commit();
 
+        Toast.makeText(MainActivity.this, mAuth.getCurrentUser().getDisplayName() , Toast.LENGTH_LONG).show();
     }
 
 
