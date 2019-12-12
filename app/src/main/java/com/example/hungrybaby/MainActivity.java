@@ -1,5 +1,6 @@
 package com.example.hungrybaby;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -36,8 +37,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_main);
 
+//        BottomNavigationView bottomNav = findViewById(id.bottom_navigation);
+//        bottomNav.setOnNavigationItemSelectedListener(navListener);
+
         BottomNavigationView bottomNav = findViewById(id.bottom_navigation);
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case id.nav_menu:
+                        Intent menuIntent = new Intent(MainActivity.this, menuActivity.class);
+                        startActivity(menuIntent);
+                        break;
+                    case id.nav_cart:
+                        Intent cartIntent = new Intent(MainActivity.this, CartActivity.class);
+                        startActivity(cartIntent);
+                        break;
+                    case id.nav_orders:
+                        Intent ordersIntent = new Intent(MainActivity.this, OrderActivity.class);
+                        startActivity(ordersIntent);
+                        break;
+                }
+                return false;
+            }
+        });
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -47,32 +71,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-            Fragment selectedFragment = null;
-
-            switch (menuItem.getItemId()){
-                case id.nav_menu:
-                    selectedFragment = new MenuFragment();
-                    break;
-
-                case id.nav_cart:
-                    selectedFragment = new CartFragment();
-                    break;
-
-                case id.nav_orders:
-                    selectedFragment = new OrdersFragment();
-                    break;
-
-                case id.nav_profile:
-                    selectedFragment = new ProfileFragment();
-                    break;
-
-            }
-
-            getSupportFragmentManager().beginTransaction().replace(id.fragment_container,selectedFragment).commit();
-            return true;
-        }
-    };
+//    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+//        @Override
+//        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//            Fragment selectedFragment = null;
+//
+//            switch (menuItem.getItemId()){
+//                case id.nav_menu:
+//                    selectedFragment = new MenuFragment();
+//                    break;
+//
+//                case id.nav_cart:
+//                    selectedFragment = new CartFragment();
+//                    break;
+//
+//                case id.nav_orders:
+//                    selectedFragment = new OrdersFragment();
+//                    break;
+//
+//                case id.nav_profile:
+//                    selectedFragment = new ProfileFragment();
+//                    break;
+//
+//            }
+//
+//            getSupportFragmentManager().beginTransaction().replace(id.fragment_container,selectedFragment).commit();
+//            return true;
+//        }
+//    };
 }

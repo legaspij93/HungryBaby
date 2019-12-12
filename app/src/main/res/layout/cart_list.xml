@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/itemQty"
+        android:text="QTY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="22sp"
+        />
+
+    <TextView
+        android:id="@+id/multiply"
+        android:text="x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/itemQty"
+        android:textColor="#333"
+        android:layout_marginTop="20dp"
+        android:textSize="22sp"
+        />
+
+    <TextView
+        android:id="@+id/itemName"
+        android:text="Item Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/itemQty"
+        android:textColor="#333"
+        android:layout_margin="20dp"
+        android:textSize="22sp"
+        />
+
+    <TextView
+        android:id="@+id/priceLabel"
+        android:text="₱"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/itemPrice"
+        android:textColor="#333"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="22sp"
+        />
+
+    <TextView
+        android:id="@+id/itemPrice"
+        android:text="Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/trashBtn"
+        android:textColor="#333"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="22sp"
+        />
+
+    <ImageView
+        android:id="@+id/trashBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="25dp"
+        android:src="@drawable/garbage"
+        />
+
+<!--    <View-->
+<!--        android:id="@+id/lineSeparator"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:background="@android:color/darker_gray"-->
+<!--        android:layout_marginLeft="15dp"-->
+<!--        android:layout_marginRight="15dp"-->
+<!--        android:layout_below="@id/itemQty"/>-->
+
+
+</RelativeLayout>

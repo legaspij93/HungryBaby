@@ -6,11 +6,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -19,12 +22,14 @@ import com.example.hungrybaby.Model.Item;
 import com.example.hungrybaby.ViewHolder.ItemViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
+import java.util.Calendar;
 
 public class menuActivity extends AppCompatActivity {
 
@@ -35,6 +40,16 @@ public class menuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND, 5);
+
+
+        Intent intent = new Intent("DISPLAY_NOTIF");
+        intent.putExtra("message", "Order is on the way...");
+        PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
@@ -42,6 +57,28 @@ public class menuActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.nav_menu:
+                        Intent menuIntent = new Intent(menuActivity.this, menuActivity.class);
+                        startActivity(menuIntent);
+                        break;
+                    case R.id.nav_cart:
+                        Intent cartIntent = new Intent(menuActivity.this, CartActivity.class);
+                        startActivity(cartIntent);
+                        break;
+                    case R.id.nav_orders:
+                        Intent ordersIntent = new Intent(menuActivity.this, OrderActivity.class);
+                        startActivity(ordersIntent);
+                        break;
+                }
+                return false;
+            }
+        });
 
         items = new FirebaseRecyclerOptions.Builder<Item>().setQuery(databaseMenu, Item.class).build();
 

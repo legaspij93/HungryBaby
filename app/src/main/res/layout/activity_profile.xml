@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_red_light"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/holo_red_light">
 
     <!--    <TextView-->
     <!--        android:text="Profile"-->
@@ -85,4 +85,17 @@
 
 
 
-</RelativeLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/bottom_navigation_bar"
+            android:background="?android:attr/windowBackground"/>
+
+
+
+
+    </RelativeLayout>
+
+
