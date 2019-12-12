@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".cartActivity"></activity>
+        <activity android:name=".OrderActivity"></activity>
+        <activity android:name=".CartActivity" />
         <activity
             android:name=".notifActivity"
             android:label="Notification" />
