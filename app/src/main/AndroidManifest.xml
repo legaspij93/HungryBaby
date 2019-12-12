@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.hungrybaby">
 
     <application
@@ -9,7 +10,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".profileActivity"></activity>
+        <activity android:name=".cartActivity"></activity>
+        <activity
+            android:name=".notifActivity"
+            android:label="Notification" />
+
+        <receiver android:name=".AlarmReceiver">
+            <intent-filter>
+                <action android:name="DISPLAY_NOTIF" />
+            </intent-filter>
+        </receiver> <!-- </activity> -->
+        <activity android:name=".timerActivity" />
+        <activity android:name=".profileActivity" />
         <activity android:name=".menuActivity" />
         <activity android:name=".foodActivity" />
         <activity android:name=".registerActivity" />

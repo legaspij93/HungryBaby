@@ -38,7 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.name.setText(items.get(position).getName());
+        holder.name.setText(items.get(position).getItemName());
         holder.price.setText(items.get(position).getPrice());
 //        Picasso.get().load(profiles.get(position).getProfilePic()).into(holder.profilePic);
     }
