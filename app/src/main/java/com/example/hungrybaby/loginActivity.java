@@ -25,7 +25,7 @@ public class loginActivity extends AppCompatActivity {
 
     EditText emailInput, passwordInput;
 
-    DatabaseReference databaseUsers;
+    DatabaseReference databaseUsers, databaseCart;
 
     FirebaseAuth mAuth;
 
@@ -41,6 +41,7 @@ public class loginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
+        databaseCart = FirebaseDatabase.getInstance().getReference("cart");
     }
 
     public void loginUser(View v){
@@ -50,7 +51,19 @@ public class loginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                databaseCart.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                            dataSnapshot1.getRef().removeValue();
+                        }
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
                 if(task.isSuccessful()) {
                     Intent intent = new Intent(loginActivity.this, menuActivity.class);
                     Toast.makeText(loginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
@@ -65,7 +78,7 @@ public class loginActivity extends AppCompatActivity {
 //                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
 //                    if(dataSnapshot1.child("email").getValue(String.class).equals(email)){
 //                        if(dataSnapshot1.child("password").getValue(String.class).equals(password)) {
-//                            Intent intent = new Intent(loginActivity.this, MainActivity.class);
+//                            Intent intent = new Intent(loginActivity.this, menuActivity.class);
 //                            Toast.makeText(loginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
 //                            startActivity(intent);
 //                        }
