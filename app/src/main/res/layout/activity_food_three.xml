@@ -10,7 +10,7 @@
         android:layout_height="270dp"
         android:id="@+id/singleItemImage"
         android:scaleType="centerCrop"/>
-    <!--        android:src="@drawable/chicken_wings"-->
+
 
 
     <TextView
@@ -47,20 +47,37 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_below="@id/singleItemPrice"
+        android:layout_toEndOf="@id/sizeLabel"
         android:layout_toStartOf="@id/sizeTwo"
-        android:text="1/2 dozen"
+        android:text="Regular"
         android:id="@+id/sizeOne"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/singleItemPrice"
+        android:layout_toStartOf="@id/sizeThree"
+        android:text="Medium"
+        android:id="@+id/sizeTwo"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_below="@id/singleItemPrice"
         android:layout_alignParentEnd="true"
-        android:text="1 dozen"
-        android:id="@+id/sizeTwo"/>
+        android:text="Large"
+        android:id="@+id/sizeThree"/>
+
 
 
     <TextView
@@ -83,8 +100,9 @@
         android:layout_marginEnd="15dp"
         android:layout_below="@id/sizeOne"
         android:layout_alignParentEnd="true"
-        app:initialNumber="1"
         app:backGroundColor="#FE761E"
+        app:initialNumber="1"
+        app:finalNumber="20"
         />
 
 

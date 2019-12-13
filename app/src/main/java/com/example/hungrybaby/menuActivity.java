@@ -2,6 +2,7 @@ package com.example.hungrybaby;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -58,6 +59,10 @@ public class menuActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Menu");
+
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
@@ -74,6 +79,10 @@ public class menuActivity extends AppCompatActivity {
                     case R.id.nav_orders:
                         Intent ordersIntent = new Intent(menuActivity.this, OrderActivity.class);
                         startActivity(ordersIntent);
+                        break;
+                    case R.id.nav_profile:
+                        Intent profileIntent = new Intent(menuActivity.this, profileActivity.class);
+                        startActivity(profileIntent);
                         break;
                 }
                 return false;

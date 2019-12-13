@@ -2,20 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/holo_red_light">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--    <TextView-->
-    <!--        android:text="Profile"-->
-    <!--        android:id="@+id/profileLabel"-->
-    <!--        android:textSize="25sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:textColor="#333"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginBottom="20dp"-->
-    <!--        android:layout_alignParentTop="true"-->
-    <!--        android:layout_centerHorizontal="true"/>-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_gray_bottom"
+        android:id="@+id/toolbarLayout">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
         android:text="Name"
@@ -24,7 +26,8 @@
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:textColor="#333"
-        android:layout_marginTop="40dp"
+        android:layout_below="@id/toolbarLayout"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="15dp"
         android:layout_marginStart="15dp"
         />
@@ -83,7 +86,36 @@
         android:layout_margin="15dp"
         />
 
+    <Button
+        android:id="@+id/pastBtn"
+        android:text="Past Orders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/address"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:background="#FE761E"
+        />
 
+    <Button
+        android:id="@+id/logoutBtn"
+        android:text="Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/address"
+        android:layout_toRightOf="@id/pastBtn"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:background="#FE761E"
+        />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
@@ -92,8 +124,6 @@
             android:layout_alignParentBottom="true"
             app:menu="@menu/bottom_navigation_bar"
             android:background="?android:attr/windowBackground"/>
-
-
 
 
     </RelativeLayout>
