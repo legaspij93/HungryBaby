@@ -2,51 +2,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/holo_orange_light">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:text="Menu"
-        android:id="@+id/menuLabel"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="#333"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:background="@drawable/white_gray_bottom"
+        android:id="@+id/toolbarLayout"
+        >
 
-    <TextView
-        android:text="Sort By"
-        android:id="@+id/sorting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textColor="#333"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_below="@id/menuLabel"/>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        </androidx.appcompat.widget.Toolbar>
 
-    <Spinner
-        android:id="@+id/sortingBox"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_toRightOf="@id/sorting"
-        android:layout_below="@id/menuLabel"
-        android:layout_alignParentEnd="true"
-        android:entries="@array/categories" />
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="580dp"
         android:layout_above="@+id/bottom_navigation"
-        android:layout_below="@id/sortingBox"
         android:layout_marginBottom="-4dp">
-
     </androidx.recyclerview.widget.RecyclerView>
 
     <Button
@@ -62,7 +42,6 @@
         android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_navigation_bar"
         android:background="?android:attr/windowBackground"/>
-
 
 
 

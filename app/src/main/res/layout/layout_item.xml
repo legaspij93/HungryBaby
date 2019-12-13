@@ -6,7 +6,7 @@
     android:layout_marginStart="15dp"
     android:layout_marginEnd="15dp"
     android:id="@+id/card_container"
-    android:layout_below="@id/sorting"
+    android:layout_below="@id/toolbarLayout"
     app:cardElevation="15dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
