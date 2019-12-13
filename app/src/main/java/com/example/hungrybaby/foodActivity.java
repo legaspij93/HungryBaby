@@ -81,8 +81,11 @@ public class foodActivity extends AppCompatActivity {
                 if(found==0){
                     String id = databaseCart.push().getKey();
 
-                    Cart cart = new Cart(name, price);
 
+                    Cart cart = new Cart();
+
+                    cart.setOrder(name);
+                    cart.setCost(price);
                     cart.setQuantity(Integer.parseInt(qtyBtn.getNumber()));
                     databaseCart.child(id).setValue(cart);
                 }

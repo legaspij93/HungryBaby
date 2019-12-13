@@ -32,6 +32,14 @@ public class Cart {
         return quantity;
     }
 
+    public void setOrder(String order) {
+        this.order = order;
+    }
+
+    public void setCost(String cost) {
+        this.cost = cost;
+    }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }

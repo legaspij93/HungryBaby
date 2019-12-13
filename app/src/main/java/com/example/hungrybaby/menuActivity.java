@@ -41,15 +41,15 @@ public class menuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.SECOND, 5);
-
-
-        Intent intent = new Intent("DISPLAY_NOTIF");
-        intent.putExtra("message", "Order is on the way...");
-        PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
+//        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.add(Calendar.SECOND, 5);
+//
+//
+//        Intent intent = new Intent("DISPLAY_NOTIF");
+//        intent.putExtra("message", "Order is on the way...");
+//        PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
