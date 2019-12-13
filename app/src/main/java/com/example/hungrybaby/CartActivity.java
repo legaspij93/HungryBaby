@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.hungrybaby.Model.Cart;
@@ -26,6 +28,8 @@ public class CartActivity extends AppCompatActivity {
 
     ListView listViewCarts;
     List<Cart> carts;
+
+    ImageView trashBtn;
     DatabaseReference databaseCarts;
 
 
@@ -36,6 +40,8 @@ public class CartActivity extends AppCompatActivity {
 
         databaseCarts = FirebaseDatabase.getInstance().getReference("cart");
         listViewCarts = findViewById(R.id.listViewCart);
+
+        trashBtn = findViewById(R.id.trashBtn);
 
         carts = new ArrayList<>();
 
@@ -74,7 +80,6 @@ public class CartActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 
     @Override
@@ -112,5 +117,4 @@ public class CartActivity extends AppCompatActivity {
 //        Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
 //        startActivity(intent);
     }
-
 }
