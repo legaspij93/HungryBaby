@@ -14,9 +14,9 @@ public class Cart {
 
     }
 
-    public Cart(String order, String totalCost){
+    public Cart(String order, String cost){
         this.order = order;
-        this.cost = totalCost;
+        this.cost = cost;
         quantity = 1;
     }
 
@@ -24,7 +24,7 @@ public class Cart {
         return order;
     }
 
-    public String getTotalCost() {
+    public String getCost() {
         return cost;
     }
 
