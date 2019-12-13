@@ -2,6 +2,7 @@ package com.example.hungrybaby;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,7 +45,13 @@ public class CartActivity extends AppCompatActivity {
 
         carts = new ArrayList<>();
 
+        //this sets the text/title in the Action Bar//
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Cart");
+
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        //this makes the icons get colored when pressed//
         Menu menu = bottomNav.getMenu();
         MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
@@ -64,6 +71,10 @@ public class CartActivity extends AppCompatActivity {
                     case R.id.nav_orders:
                         Intent ordersIntent = new Intent(CartActivity.this, OrderActivity.class);
                         startActivity(ordersIntent);
+                        break;
+                    case R.id.nav_profile:
+                        Intent profileIntent = new Intent(CartActivity.this, profileActivity.class);
+                        startActivity(profileIntent);
                         break;
                 }
                 return false;

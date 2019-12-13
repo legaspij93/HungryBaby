@@ -2,6 +2,7 @@ package com.example.hungrybaby;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,10 @@ public class OrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Order");
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         Menu menu = bottomNav.getMenu();
@@ -36,6 +41,10 @@ public class OrderActivity extends AppCompatActivity {
                     case R.id.nav_orders:
                         Intent ordersIntent = new Intent(OrderActivity.this, OrderActivity.class);
                         startActivity(ordersIntent);
+                        break;
+                    case R.id.nav_profile:
+                        Intent profileIntent = new Intent(OrderActivity.this, profileActivity.class);
+                        startActivity(profileIntent);
                         break;
                 }
                 return false;
