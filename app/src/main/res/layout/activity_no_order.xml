@@ -26,28 +26,38 @@
         android:id="@+id/tester"
         android:onClick="viewProfile"/>
 
-    <TextView
-        android:id="@+id/orderDescription"
-        android:text="You have no orders at the moment."
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/contentPanel"
         android:layout_below="@id/toolbarLayout"
-        android:gravity="center"
+        android:gravity="center">
 
-        android:textColor="#333"
-        android:textSize="24sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="10dp"
-        />
+        <TextView
+            android:id="@+id/orderDescription"
+            android:text="You have no orders at the moment."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#333"
+            android:textSize="24sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp"
+            />
 
-    <Button
-        android:id="@+id/order"
-        android:text="Order Now"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/orderDescription"
-        android:onClick="viewProfile"/>
+        <Button
+            android:id="@+id/order"
+            android:text="Order Now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/orderDescription"
+            android:background="@color/colorWhite"
+            android:layout_centerHorizontal="true"
+            android:onClick="orderNow"/>
+
+
+    </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

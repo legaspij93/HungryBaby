@@ -1,60 +1,51 @@
 package com.example.hungrybaby;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class OrderActivity extends AppCompatActivity {
+public class CategoryActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
+        setContentView(R.layout.activity_categories);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Order");
+        getSupportActionBar().setTitle("Menu");
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        Menu menu = bottomNav.getMenu();
-        MenuItem menuItem = menu.getItem(2);
-        menuItem.setChecked(true);
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.nav_menu:
-                        Intent menuIntent = new Intent(OrderActivity.this, menuActivity.class);
+                        Intent menuIntent = new Intent(CategoryActivity.this, menuActivity.class);
                         startActivity(menuIntent);
                         break;
                     case R.id.nav_cart:
-                        Intent cartIntent = new Intent(OrderActivity.this, CartActivity.class);
+                        Intent cartIntent = new Intent(CategoryActivity.this, CartActivity.class);
                         startActivity(cartIntent);
                         break;
                     case R.id.nav_orders:
-                        Intent ordersIntent = new Intent(OrderActivity.this, OrderActivity.class);
+                        Intent ordersIntent = new Intent(CategoryActivity.this, OrderActivity.class);
                         startActivity(ordersIntent);
                         break;
                     case R.id.nav_profile:
-                        Intent profileIntent = new Intent(OrderActivity.this, profileActivity.class);
+                        Intent profileIntent = new Intent(CategoryActivity.this, profileActivity.class);
                         startActivity(profileIntent);
                         break;
                 }
                 return false;
             }
         });
-    }
-
-    public void orderNow(View v){
-        Intent intent = new Intent(OrderActivity.this, menuActivity.class);
-        startActivity(intent);
     }
 }
