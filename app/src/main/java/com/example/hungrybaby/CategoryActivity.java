@@ -3,6 +3,7 @@ package com.example.hungrybaby;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,4 +49,29 @@ public class CategoryActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void catFries(View v){
+        Intent intent = new Intent(CategoryActivity.this, menuActivity.class);
+        intent.putExtra("CAT", "fries");
+        startActivity(intent);
+    }
+
+    public void catBurgers(View v){
+        Intent intent = new Intent(CategoryActivity.this, menuActivity.class);
+        intent.putExtra("CAT", "burgers");
+        startActivity(intent);
+    }
+
+    public void catWings(View v){
+        Intent intent = new Intent(CategoryActivity.this, menuActivity.class);
+        intent.putExtra("CAT", "wings");
+        startActivity(intent);
+    }
+
+    public void catDrinks(View v){
+        Intent intent = new Intent(CategoryActivity.this, menuActivity.class);
+        intent.putExtra("CAT", "drinks");
+        startActivity(intent);
+    }
+
 }
