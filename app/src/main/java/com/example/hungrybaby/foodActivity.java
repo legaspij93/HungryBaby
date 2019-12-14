@@ -23,6 +23,8 @@ import com.squareup.picasso.Picasso;
 
 public class foodActivity extends AppCompatActivity {
 
+    String category;
+
     TextView singleItemName, singleItemPrice, price;
     ImageView singleItemImage;
     ElegantNumberButton qtyBtn;
@@ -32,7 +34,17 @@ public class foodActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food);
+
+        Intent intent = getIntent();
+
+        category = intent.getStringExtra("CAT");
+
+        if(category.equals("drinks")){
+            setContentView(R.layout.activity_food_three);
+        }
+        else {
+            setContentView(R.layout.activity_food_two);
+        }
 
         singleItemName = findViewById(R.id.singleItemName);
         singleItemPrice = findViewById(R.id.singleItemPrice);
@@ -42,7 +54,7 @@ public class foodActivity extends AppCompatActivity {
 
         databaseCart = FirebaseDatabase.getInstance().getReference("cart");
 
-        Intent intent = getIntent();
+
 
         singleItemName.setText(intent.getStringExtra("NAME"));
         singleItemPrice.setText(intent.getStringExtra("PRICE"));

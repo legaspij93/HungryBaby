@@ -48,10 +48,10 @@ public class profileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
 
-        mTextViewCountDown = findViewById(R.id.text_view_countdown);
+//        mTextViewCountDown = findViewById(R.id.text_view_countdown);
         stat = findViewById(R.id.cash);
-        resetTimer();
-        startTimer();
+//        resetTimer();
+//        startTimer();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -62,7 +62,7 @@ public class profileActivity extends AppCompatActivity {
         contact = findViewById(R.id.contact);
         address = findViewById(R.id.address);
         logoutBtn = findViewById(R.id.logoutBtn);
-        stat = findViewById(R.id.status);
+//        stat = findViewById(R.id.status);
 
         userName.setText(mAuth.getCurrentUser().getDisplayName());
         emailAddress.setText(mAuth.getCurrentUser().getEmail());
@@ -128,88 +128,88 @@ public class profileActivity extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-
-        mTimeLeftInMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
-        mTimerRunning = prefs.getBoolean("timerRunning", false);
-
-        updateCountDownText();
-
-        if (mTimerRunning) {
-            mEndTime = prefs.getLong("endTime", 0);
-            mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
-
-            if (mTimeLeftInMillis < 0) {
-                mTimeLeftInMillis = 0;
-                mTimerRunning = false;
-                updateCountDownText();
-            } else {
-                startTimer();
-            }
-        }
-    }
-
-    private void resetTimer() {
-        mTimeLeftInMillis = START_TIME_IN_MILLIS;
-        updateCountDownText();
-    }
-
-    private void startTimer() {
-        mEndTime = START_TIME_IN_MILLIS + mTimeLeftInMillis;
-//        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
-
-        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
-
-
-            }
-
-            @Override
-            public void onFinish() {
-                mTimerRunning = false;
-                Toast.makeText(profileActivity.this, "Timer Finish", Toast.LENGTH_SHORT).show();
-
-
-            }
-        }.start();
-
-        mTimerRunning = true;
-    }
-
-    private void updateCountDownText() {
-        final String CHANNEL_ID = "notif";
-        final int NOTIFICATION_ID = 001;
-
-        int sec = (int) (mTimeLeftInMillis / 1000) % 60;
-        if( sec == 7)
-        {
-            stat.setText("WEW");
-            Toast.makeText(profileActivity.this, "WEW", Toast.LENGTH_SHORT).show();
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
-            builder.setContentTitle("Demo App Notification");
-            builder.setContentText("New Notification From Demo App..");
-            builder.setTicker("New Message Alert!");
-            builder.setSmallIcon(R.mipmap.ic_launcher);
-            builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-            NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
-            notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
-        }
-
-        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
-
-        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-
-        mTextViewCountDown.setText(timeLeftFormatted);
-    }
-
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+//
+//        mTimeLeftInMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
+//        mTimerRunning = prefs.getBoolean("timerRunning", false);
+//
+//        updateCountDownText();
+//
+//        if (mTimerRunning) {
+//            mEndTime = prefs.getLong("endTime", 0);
+//            mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
+//
+//            if (mTimeLeftInMillis < 0) {
+//                mTimeLeftInMillis = 0;
+//                mTimerRunning = false;
+//                updateCountDownText();
+//            } else {
+//                startTimer();
+//            }
+//        }
+//    }
+//
+//    private void resetTimer() {
+//        mTimeLeftInMillis = START_TIME_IN_MILLIS;
+//        updateCountDownText();
+//    }
+//
+//    private void startTimer() {
+//        mEndTime = START_TIME_IN_MILLIS + mTimeLeftInMillis;
+////        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
+//
+//        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//                mTimeLeftInMillis = millisUntilFinished;
+//                updateCountDownText();
+//
+//
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                mTimerRunning = false;
+//                Toast.makeText(profileActivity.this, "Timer Finish", Toast.LENGTH_SHORT).show();
+//
+//
+//            }
+//        }.start();
+//
+//        mTimerRunning = true;
+//    }
+//
+//    private void updateCountDownText() {
+//        final String CHANNEL_ID = "notif";
+//        final int NOTIFICATION_ID = 001;
+//
+//        int sec = (int) (mTimeLeftInMillis / 1000) % 60;
+//        if( sec == 7)
+//        {
+//            stat.setText("WEW");
+//            Toast.makeText(profileActivity.this, "WEW", Toast.LENGTH_SHORT).show();
+//            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+//            builder.setContentTitle("Demo App Notification");
+//            builder.setContentText("New Notification From Demo App..");
+//            builder.setTicker("New Message Alert!");
+//            builder.setSmallIcon(R.mipmap.ic_launcher);
+//            builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+//
+//            NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+//            notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
+//        }
+//
+//        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+//        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+//
+//        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+//
+//        mTextViewCountDown.setText(timeLeftFormatted);
+//    }
+//
 }

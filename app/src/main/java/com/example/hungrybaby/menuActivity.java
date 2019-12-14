@@ -113,6 +113,7 @@ public class menuActivity extends AppCompatActivity {
                 itemViewHolder.price.setText(item.getPrice());
                 itemViewHolder.name.setText(item.getItemName());
                 itemViewHolder.setImageLink(item.getImage());
+                itemViewHolder.setCategory(category);
 
             }
 
