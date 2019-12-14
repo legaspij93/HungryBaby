@@ -35,7 +35,10 @@ public class CartList extends ArrayAdapter<Cart> {
 
         Cart cart = carts.get(position);
         cartName.setText(cart.getOrder());
-        cartPrice.setText(cart.getCost());
+        int Cost = Integer.parseInt(cart.getCost());
+        int tCost = Cost*cart.getQuantity();
+        String stCost = String.valueOf(tCost);
+        cartPrice.setText(stCost);
         cartQty.setText(Integer.toString(cart.getQuantity()));
 
         return listViewCart;

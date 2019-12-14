@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.hungrybaby.Model.Cart;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,6 +30,9 @@ public class CartActivity extends AppCompatActivity {
     ListView listViewCarts;
     List<Cart> carts;
 
+    TextView totalPrice;
+    TextView subTotal;
+
     ImageView trashBtn;
     DatabaseReference databaseCarts;
 
@@ -40,7 +44,8 @@ public class CartActivity extends AppCompatActivity {
 
         databaseCarts = FirebaseDatabase.getInstance().getReference("cart");
         listViewCarts = findViewById(R.id.listViewCart);
-
+        subTotal = findViewById(R.id.subtotal);
+        totalPrice = findViewById(R.id.total);
         trashBtn = findViewById(R.id.trashBtn);
 
         carts = new ArrayList<>();
@@ -99,6 +104,16 @@ public class CartActivity extends AppCompatActivity {
                     //adding blog to the list
                     carts.add(cart);
                 }
+                int sum =0;
+
+                for(int i=0;i<carts.size();i++){
+                    int price = Integer.parseInt(carts.get(i).getCost());
+                    sum = sum + (price*carts.get(i).getQuantity());
+                }
+                String sub = String.valueOf(sum);
+                subTotal.setText(sub);
+                String total = String.valueOf(sum + 50);
+                totalPrice.setText(total);
 
                 //creating adapter
                 CartList blogAdapter = new CartList(CartActivity.this, carts);
@@ -114,7 +129,7 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public void checkoutOrder(View v){
-//        Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
+        startActivity(intent);
     }
 }
