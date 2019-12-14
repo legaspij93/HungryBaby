@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -50,5 +51,10 @@ public class OrderActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public void orderNow(View v){
+        Intent intent = new Intent(OrderActivity.this, menuActivity.class);
+        startActivity(intent);
     }
 }
