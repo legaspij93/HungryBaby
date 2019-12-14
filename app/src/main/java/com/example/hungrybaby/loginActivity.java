@@ -46,6 +46,15 @@ public class loginActivity extends AppCompatActivity {
             startActivity(new Intent(loginActivity.this, menuActivity.class));
         }
 
+
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
+        if(firebaseUser!=null){
+            startActivity(new Intent(loginActivity.this, CategoryActivity.class));
+        }
+
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
         databaseCart = FirebaseDatabase.getInstance().getReference("cart");
     }
@@ -71,7 +80,7 @@ public class loginActivity extends AppCompatActivity {
                     }
                 });
                 if(task.isSuccessful()) {
-                    Intent intent = new Intent(loginActivity.this, menuActivity.class);
+                    Intent intent = new Intent(loginActivity.this, CategoryActivity.class);
                     Toast.makeText(loginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
                     startActivity(intent);
                 }

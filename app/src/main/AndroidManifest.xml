@@ -13,6 +13,7 @@
         <activity android:name=".OrderActivity" />
         <activity android:name=".CartActivity" />
         <activity android:name=".CheckoutActivity"/>
+        <activity android:name=".CategoryActivity"/>
         <activity
             android:name=".notifActivity"
             android:label="Notification" />
