@@ -28,7 +28,7 @@ public class CategoryActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.nav_menu:
-                        Intent menuIntent = new Intent(CategoryActivity.this, menuActivity.class);
+                        Intent menuIntent = new Intent(CategoryActivity.this, CategoryActivity.class);
                         startActivity(menuIntent);
                         break;
                     case R.id.nav_cart:
