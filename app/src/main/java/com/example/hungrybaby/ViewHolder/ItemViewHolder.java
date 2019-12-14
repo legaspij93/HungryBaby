@@ -24,7 +24,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder
     public TextView name,price;
     public ImageView image;
     public View v;
-    String imageLink;
+    String imageLink, category;
     Button btn;
 
 
@@ -43,6 +43,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder
                     intent.putExtra("NAME", name.getText().toString());
                     intent.putExtra("PRICE", price.getText().toString());
                     intent.putExtra("IMAGE", imageLink);
+                    intent.putExtra("CAT", category);
                     v.getContext().startActivity(intent);
             }
         });
@@ -51,6 +52,10 @@ public class ItemViewHolder extends RecyclerView.ViewHolder
 
     public void setImageLink(String imageLink){
         this.imageLink = imageLink;
+    }
+
+    public void setCategory(String category){
+        this.category = category;
     }
 
     public void onClick(final int position)
