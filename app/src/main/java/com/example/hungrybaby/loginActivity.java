@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +40,15 @@ public class loginActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.passwordInput);
 
         mAuth = FirebaseAuth.getInstance();
+
+
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
+        if(firebaseUser!=null){
+            startActivity(new Intent(loginActivity.this, menuActivity.class));
+        }
 
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
         databaseCart = FirebaseDatabase.getInstance().getReference("cart");
@@ -65,7 +75,7 @@ public class loginActivity extends AppCompatActivity {
                     }
                 });
                 if(task.isSuccessful()) {
-                    Intent intent = new Intent(loginActivity.this, menuActivity.class);
+                    Intent intent = new Intent(loginActivity.this, CategoryActivity.class);
                     Toast.makeText(loginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
                     startActivity(intent);
                 }

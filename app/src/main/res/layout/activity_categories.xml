@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_gray_bottom"
+        android:id="@+id/toolbarLayout"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbarLayout"
+        android:layout_above="@id/bottom_navigation"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:id="@+id/categoryOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbarLayout"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shadow">
+
+            <ImageView
+                android:id="@+id/itemImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fries"
+                />
+
+            <TextView
+                android:id="@+id/itemName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fries"
+                android:textSize="24dp"
+                android:textColor="#333"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:layout_below="@id/itemImage"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/categoryTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/categoryOne"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shadow">
+
+            <ImageView
+                android:id="@+id/itemImage1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/burger"
+                />
+
+            <TextView
+                android:id="@+id/itemName1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Burgers"
+                android:textSize="24dp"
+                android:textColor="#333"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:layout_below="@id/itemImage1"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/categoryThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/categoryTwo"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shadow">
+
+            <ImageView
+                android:id="@+id/itemImage2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/chicken_wings"
+                />
+
+            <TextView
+                android:id="@+id/itemName2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chicken Wings"
+                android:textSize="24dp"
+                android:textColor="#333"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:layout_below="@id/itemImage2"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/categoryFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/categoryThree"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shadow">
+
+            <ImageView
+                android:id="@+id/itemImage3"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/drinks"
+                />
+
+            <TextView
+                android:id="@+id/itemName3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Drinks"
+                android:textSize="24dp"
+                android:textColor="#333"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:layout_below="@id/itemImage3"/>
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_navigation_bar"
+        android:background="?android:attr/windowBackground"/>
+
+</RelativeLayout>
