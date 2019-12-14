@@ -40,6 +40,11 @@ public class loginActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.passwordInput);
 
         mAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
+        if(firebaseUser!=null){
+            startActivity(new Intent(loginActivity.this, menuActivity.class));
+        }
 
 
 

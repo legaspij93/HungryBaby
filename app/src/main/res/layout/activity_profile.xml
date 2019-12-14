@@ -84,6 +84,19 @@
         android:layout_margin="15dp"
         />
 
+    <TextView
+        android:text="Status"
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="#333"
+        android:layout_below="@id/toolbarLayout"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="15dp"
+        />
+
     <Button
         android:id="@+id/pastBtn"
         android:text="Past Orders"
