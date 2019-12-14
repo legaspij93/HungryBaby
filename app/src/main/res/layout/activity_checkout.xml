@@ -3,18 +3,20 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:text="Checkout"
-        android:id="@+id/checkoutLabel"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="#333"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:background="@drawable/white_gray_bottom"
+        android:id="@+id/toolbarLayout">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
         android:text="Delivery Address"
@@ -27,7 +29,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="15dp"
-        android:layout_below="@id/checkoutLabel"
+        android:layout_below="@id/toolbarLayout"
         />
 
     <EditText
@@ -37,6 +39,29 @@
         android:layout_below="@id/addressLabel"
         android:layout_margin="10dp"
         android:padding="10dp"
+        />
+
+    <TextView
+        android:text="Contact Number"
+        android:id="@+id/contactLabel"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#333"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@id/addressInput"
+        />
+
+    <EditText
+        android:id="@+id/contactNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:layout_below="@id/contactLabel"
         />
 
     <TextView
@@ -50,7 +75,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="15dp"
-        android:layout_below="@id/addressInput"
+        android:layout_below="@id/contactNumber"
         />
 
     <TextView
