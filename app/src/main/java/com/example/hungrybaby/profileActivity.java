@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -23,6 +25,7 @@ public class profileActivity extends AppCompatActivity {
     TextView userName, emailAddress, contact, address;
     FirebaseAuth mAuth;
     DatabaseReference databaseUsers;
+    Button logoutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class profileActivity extends AppCompatActivity {
         emailAddress = findViewById(R.id.emailAddress);
         contact = findViewById(R.id.contact);
         address = findViewById(R.id.address);
+        logoutBtn = findViewById(R.id.logoutBtn);
 
         userName.setText(mAuth.getCurrentUser().getDisplayName());
         emailAddress.setText(mAuth.getCurrentUser().getEmail());
@@ -88,6 +92,17 @@ public class profileActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(profileActivity.this, loginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
     }
