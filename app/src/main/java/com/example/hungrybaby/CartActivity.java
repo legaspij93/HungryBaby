@@ -66,7 +66,7 @@ public class CartActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.nav_menu:
-                        Intent menuIntent = new Intent(CartActivity.this, menuActivity.class);
+                        Intent menuIntent = new Intent(CartActivity.this, CategoryActivity.class);
                         startActivity(menuIntent);
                         break;
                     case R.id.nav_cart:
@@ -129,7 +129,7 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public void checkoutOrder(View v){
-        Intent intent = new Intent(CartActivity.this, profileActivity.class);
+        Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
         startActivity(intent);
     }
 }
