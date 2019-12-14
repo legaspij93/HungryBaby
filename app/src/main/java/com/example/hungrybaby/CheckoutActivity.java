@@ -14,6 +14,7 @@ import androidx.core.app.NotificationManagerCompat;
 import com.example.hungrybaby.Model.Cart;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -22,10 +23,14 @@ import java.util.Locale;
 
 public class CheckoutActivity extends AppCompatActivity {
 
+    DatabaseReference databaseUsers;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
+
+        databaseUsers = FirebaseDatabase.getInstance().getReference("users");
 
     }
 
