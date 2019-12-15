@@ -123,6 +123,7 @@ public class CheckoutActivity extends AppCompatActivity {
                 order.setDeliverAddress(addressInput.getText().toString());
                 order.setTotalCost(cartIntent.getStringExtra("TOTAL"));
                 order.setDateOrdered(timestamp);
+                order.setStatus("Preparing Order!");
                 databaseCurrent.child(id).setValue(order);
             }
 

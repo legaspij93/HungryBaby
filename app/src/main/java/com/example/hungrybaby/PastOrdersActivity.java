@@ -19,10 +19,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PastOrdersActivity extends AppCompatActivity {
+
+    public static final String ORDER_ID = "ORDER_ID";
+    public static final String ORDER_ADDRESS = "ORDER_ADDRESS";
+    public static final String ORDER_LIST = "ORDER_LIST";
+    public static final String ORDER_DATE = "ORDER_DATE";
+    public static final String ORDER_TOTAL = "ORDER_TOTAL";
 
     DatabaseReference databaseOrders;
     FirebaseAuth mAuth;
@@ -52,13 +59,15 @@ public class PastOrdersActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
                 Order order = orders.get(i);
 
-//                Intent intent = new Intent(getApplicationContext(), PastOrderIndivActivity.class);
-//                intent.putExtra(ORDER_ID, order.getOrderId());
-//                intent.putExtra(BLOG_TITLE, blog.getTitle());
-//                intent.putExtra(BLOG_CONTENT, blog.getContent());
-//                intent.putExtra(BLOG_DATE, blog.getTimestamp());
-//                intent.putExtra(BLOG_CATEGORIES, blog.getCategories());
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), PastOrderIndivActivity.class);
+                intent.putExtra(ORDER_ID, order.getOrderId());
+                intent.putExtra(ORDER_ADDRESS, order.getDeliverAddress());
+                intent.putExtra(ORDER_DATE, order.getDateOrdered());
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("CARTLIST", (Serializable) order.getOrders());
+                intent.putExtra(ORDER_LIST, bundle);
+                intent.putExtra(ORDER_TOTAL, order.getTotalCost());
+                startActivity(intent);
 
             }
         });

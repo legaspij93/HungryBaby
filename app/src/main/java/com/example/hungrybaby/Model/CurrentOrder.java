@@ -15,14 +15,14 @@ public class CurrentOrder {
 
     }
 
-    public CurrentOrder(String orderId, List<Cart> orders, String totalCost, String deliverAddress, String user, String dateOrdered){
+    public CurrentOrder(String orderId, List<Cart> orders, String totalCost, String deliverAddress, String user, String dateOrdered, String status){
         this.orderId = orderId;
         this.orders = orders;
         this.totalCost = totalCost;
         this.deliverAddress = deliverAddress;
         this.user = user;
         this.dateOrdered = dateOrdered;
-        this.status = "Preparing Order";
+        this.status = status;
     }
 
     public String getOrderId() {
