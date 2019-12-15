@@ -41,6 +41,7 @@ public class OrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
+
 //        orderExists = true;
         databaseCurrent = FirebaseDatabase.getInstance().getReference("currentOrder");
 
@@ -67,14 +68,14 @@ public class OrderActivity extends AppCompatActivity {
 //        });
 //
 //        if(orderExists == true){
-//            setContentView(R.layout.activity_order);
 //
 //        }else{
 //            setContentView(R.layout.activity_no_order);
 //        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);setContentView(R.layout.activity_order);
+//
         getSupportActionBar().setTitle("Order");
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
