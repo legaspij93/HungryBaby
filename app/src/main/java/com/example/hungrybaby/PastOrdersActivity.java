@@ -1,6 +1,9 @@
 package com.example.hungrybaby;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -43,6 +46,22 @@ public class PastOrdersActivity extends AppCompatActivity {
         listViewOrder = findViewById(R.id.listViewOrder);
 
         orders = new ArrayList<>();
+
+        listViewOrder.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+                Order order = orders.get(i);
+
+//                Intent intent = new Intent(getApplicationContext(), PastOrderIndivActivity.class);
+//                intent.putExtra(ORDER_ID, order.getOrderId());
+//                intent.putExtra(BLOG_TITLE, blog.getTitle());
+//                intent.putExtra(BLOG_CONTENT, blog.getContent());
+//                intent.putExtra(BLOG_DATE, blog.getTimestamp());
+//                intent.putExtra(BLOG_CATEGORIES, blog.getCategories());
+//                startActivity(intent);
+
+            }
+        });
 
     }
 
