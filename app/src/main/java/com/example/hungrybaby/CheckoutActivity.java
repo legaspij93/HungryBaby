@@ -48,6 +48,8 @@ public class CheckoutActivity extends AppCompatActivity {
     private long mTimeLeftInMillis;
     private long mEndTime;
 
+    String idQuery;
+
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser firebaseUser = mAuth.getCurrentUser();
     String userID = firebaseUser.getUid();
@@ -101,6 +103,9 @@ public class CheckoutActivity extends AppCompatActivity {
 
     public void placeOrder(View v){
 
+        resetTimer();
+        startTimer();
+
         final SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd");
 
         Bundle cartBundle = cartIntent.getBundleExtra("BUNDLE");
@@ -110,6 +115,7 @@ public class CheckoutActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String id = databaseCurrent.push().getKey();
+                idQuery = id;
 
 
                 CurrentOrder order = new CurrentOrder();
@@ -205,7 +211,7 @@ public class CheckoutActivity extends AppCompatActivity {
         if( sec == 20)
         {
 
-            databaseCurrent.child("status").setValue("Order is on the way...");
+            databaseCurrent.child(idQuery).child("status").setValue("Order is on the way...");
             Toast.makeText(CheckoutActivity.this, "WEW", Toast.LENGTH_SHORT).show();
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
             builder.setContentTitle("Food Delivery Status");
@@ -223,6 +229,52 @@ public class CheckoutActivity extends AppCompatActivity {
             notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
 
         }
+
+        if( sec == 10)
+        {
+
+            databaseCurrent.child(idQuery).child("status").setValue("Driver is nearby...");
+            Toast.makeText(CheckoutActivity.this, "WEW", Toast.LENGTH_SHORT).show();
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+            builder.setContentTitle("Food Delivery Status");
+            builder.setContentText("Driver is nearby....");
+            builder.setTicker("New Message Alert!");
+            builder.setSmallIcon(R.mipmap.ic_launcher);
+            builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+            Intent intent = new Intent(CheckoutActivity.this, profileActivity.class);
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(CheckoutActivity.this,0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            builder.setContentIntent(pendingIntent);
+
+            NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+            notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
+
+        }
+
+         if( sec == 5)
+        {
+
+            databaseCurrent.child(idQuery).child("status").setValue("Your food has arrived...");
+            Toast.makeText(CheckoutActivity.this, "WEW", Toast.LENGTH_SHORT).show();
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+            builder.setContentTitle("Food Delivery Status");
+            builder.setContentText("Your food has arrived");
+            builder.setTicker("New Message Alert!");
+            builder.setSmallIcon(R.mipmap.ic_launcher);
+            builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+            Intent intent = new Intent(CheckoutActivity.this, profileActivity.class);
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(CheckoutActivity.this,0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            builder.setContentIntent(pendingIntent);
+
+            NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+            notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
+        }
+
+
+
 
         int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
