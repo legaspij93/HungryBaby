@@ -3,9 +3,11 @@ package com.example.hungrybaby;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hungrybaby.Model.User;
@@ -21,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class registerActivity extends AppCompatActivity {
 
     EditText nameInput, emailInput, numberInput, addressInput, passwordInput;
+    TextView text;
+    Typeface font;
 
     DatabaseReference databaseUsers;
 
@@ -30,6 +34,11 @@ public class registerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        //this is in charge of applying the font
+        text = (TextView) findViewById(R.id.label);
+        font = Typeface.createFromAsset(this.getAssets(),"fonts/Baloo-Regular.ttf");
+        text.setTypeface(font);
 
         nameInput = findViewById(R.id.nameInput);
         emailInput = findViewById(R.id.emailInput);
