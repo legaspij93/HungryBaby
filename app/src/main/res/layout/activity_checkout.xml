@@ -104,6 +104,7 @@
         android:layout_marginEnd="10dp"
         android:textSize="24sp"
         android:background="#FE761E"
+        android:onClick="placeOrder"
         />
 
 

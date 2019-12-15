@@ -110,6 +110,7 @@
         android:padding="10dp"
         android:textSize="20sp"
         android:background="#FE761E"
+        android:onClick="viewHistory"
         />
 
     <Button

@@ -29,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -153,6 +154,10 @@ public class CartActivity extends AppCompatActivity {
 
     public void checkoutOrder(View v){
         Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("CARTLIST", (Serializable) carts);
+        intent.putExtra("BUNDLE", bundle);
+        intent.putExtra("TOTAL", totalPrice.getText().toString());
         startActivity(intent);
 //        resetTimer();
 //        startTimer();

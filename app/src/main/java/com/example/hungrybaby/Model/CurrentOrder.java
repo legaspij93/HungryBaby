@@ -2,25 +2,27 @@ package com.example.hungrybaby.Model;
 
 import java.util.List;
 
-public class Order {
+public class CurrentOrder {
     private String orderId;
     private List<Cart> orders;
     private String totalCost;
     private String deliverAddress;
     private String user;
     private String dateOrdered;
+    private String status;
 
-    public Order(){
+    public CurrentOrder(){
 
     }
 
-    public Order(String orderId, List<Cart> orders, String totalCost, String deliverAddress, String user, String dateOrdered){
+    public CurrentOrder(String orderId, List<Cart> orders, String totalCost, String deliverAddress, String user, String dateOrdered){
         this.orderId = orderId;
         this.orders = orders;
         this.totalCost = totalCost;
         this.deliverAddress = deliverAddress;
         this.user = user;
         this.dateOrdered = dateOrdered;
+        this.status = "Preparing Order";
     }
 
     public String getOrderId() {
@@ -70,5 +72,12 @@ public class Order {
     public void setDateOrdered(String dateOrdered) {
         this.dateOrdered = dateOrdered;
     }
-}
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+}
