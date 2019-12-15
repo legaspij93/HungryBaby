@@ -214,7 +214,6 @@
 
     <TextView
         android:id="@+id/deliveryAddress"
-        android:text="ADDRESS HERE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/bottom_navigation"
