@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hungrybaby.Model.Cart;
+import com.example.hungrybaby.Model.CurrentOrder;
 import com.example.hungrybaby.Model.Order;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -29,8 +30,8 @@ public class OrderActivity extends AppCompatActivity {
 
     DatabaseReference databaseCurrent;
 
-    TextView deliveryAddress, subtotal, total;
-    List<Order> orders;
+    TextView deliveryAddress, subtotal, total, status;
+    List<CurrentOrder> orders;
     List<Cart> carts;
 
     ListView listViewOrder;
@@ -51,6 +52,7 @@ public class OrderActivity extends AppCompatActivity {
         deliveryAddress = findViewById(R.id.deliveryAddress);
         subtotal = findViewById(R.id.subtotal);
         total = findViewById(R.id.total);
+        status = findViewById(R.id.status);
 
 //        databaseCurrent.addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override
@@ -122,7 +124,7 @@ public class OrderActivity extends AppCompatActivity {
                 //iterating through all the nodes
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     //getting blog
-                    Order order = postSnapshot.getValue(Order.class);
+                    CurrentOrder order = postSnapshot.getValue(CurrentOrder.class);
                     //adding blog to the list
                     orders.add(order);
                 }
@@ -144,6 +146,7 @@ public class OrderActivity extends AppCompatActivity {
 
                 deliveryAddress.setText(orders.get(0).getDeliverAddress());
                 total.setText(orders.get(0).getTotalCost());
+                status.setText(orders.get(0).getStatus());
 
                 String tc = orders.get(0).getTotalCost();
                 int sub = Integer.parseInt(tc) - 50;

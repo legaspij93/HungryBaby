@@ -172,7 +172,6 @@
 
     <TextView
         android:id="@+id/total"
-        android:text="Total Price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -209,7 +208,6 @@
 
     <TextView
         android:id="@+id/deliveryAddress"
-        android:text="ADDRESS HERE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

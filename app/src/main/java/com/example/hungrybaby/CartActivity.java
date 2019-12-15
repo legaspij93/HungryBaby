@@ -3,9 +3,13 @@ package com.example.hungrybaby;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,9 +17,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hungrybaby.Model.Cart;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -35,8 +43,12 @@ public class CartActivity extends AppCompatActivity {
     TextView subTotal;
 
     ImageView trashBtn;
-    DatabaseReference databaseCarts;
+    DatabaseReference databaseCarts, databaseUsers;
 
+
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser firebaseUser = mAuth.getCurrentUser();
+    String userID = firebaseUser.getUid();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +56,14 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
 
         databaseCarts = FirebaseDatabase.getInstance().getReference("cart");
+        databaseUsers = FirebaseDatabase.getInstance().getReference("users");
         listViewCarts = findViewById(R.id.listViewCart);
         subTotal = findViewById(R.id.subtotal);
         totalPrice = findViewById(R.id.total);
         trashBtn = findViewById(R.id.trashBtn);
+
+
+
 
         carts = new ArrayList<>();
 
@@ -136,5 +152,10 @@ public class CartActivity extends AppCompatActivity {
         intent.putExtra("BUNDLE", bundle);
         intent.putExtra("TOTAL", totalPrice.getText().toString());
         startActivity(intent);
+//        resetTimer();
+//        startTimer();
     }
+
+
+
 }
