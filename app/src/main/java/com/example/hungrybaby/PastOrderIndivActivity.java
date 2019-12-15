@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.hungrybaby.Model.Cart;
 import com.example.hungrybaby.Model.Order;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -51,6 +52,11 @@ public class PastOrderIndivActivity extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
 
-
+        Intent intent = getIntent();
+        Bundle cartBundle = intent.getBundleExtra("ORDER_LIST");
+        List<Cart> carts = (List<Cart>) cartBundle.getSerializable("CARTLIST");        //creating adapter
+        CartList blogAdapter = new CartList(PastOrderIndivActivity.this, carts);
+        //attaching adapter to the listview
+        listViewOrder.setAdapter(blogAdapter);
     }
 }
