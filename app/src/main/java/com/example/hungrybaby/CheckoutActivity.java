@@ -1,5 +1,6 @@
 package com.example.hungrybaby;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import com.example.hungrybaby.Model.Cart;
 import com.example.hungrybaby.Model.CurrentOrder;
 import com.example.hungrybaby.Model.Order;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,10 +36,23 @@ import java.util.Locale;
 public class CheckoutActivity extends AppCompatActivity {
 
     DatabaseReference databaseUsers, databaseOrders, databaseCurrent;
-    FirebaseAuth mAuth;
     Intent cartIntent;
 
     EditText addressInput, contactNumber;
+
+    private CountDownTimer mCountDownTimer;
+    private static final long START_TIME_IN_MILLIS = 30000;
+
+    private boolean mTimerRunning;
+    private TextView mTextViewCountDown, stat;
+    private long mTimeLeftInMillis;
+    private long mEndTime;
+
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser firebaseUser = mAuth.getCurrentUser();
+    String userID = firebaseUser.getUid();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -148,6 +163,72 @@ public class CheckoutActivity extends AppCompatActivity {
         Toast.makeText(this, "Order Success!", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(CheckoutActivity.this, OrderActivity.class);
         startActivity(intent);
+    }
+
+
+    private void resetTimer() {
+        mTimeLeftInMillis = START_TIME_IN_MILLIS;
+//        updateCountDownText();
+    }
+
+    private void startTimer() {
+        mEndTime = START_TIME_IN_MILLIS + mTimeLeftInMillis;
+//        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
+
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
+
+
+            }
+
+            @Override
+            public void onFinish() {
+                mTimerRunning = false;
+                Toast.makeText(CheckoutActivity.this, "Timer Finish", Toast.LENGTH_SHORT).show();
+
+
+            }
+        }.start();
+
+        mTimerRunning = true;
+    }
+
+    private void updateCountDownText() {
+        final String CHANNEL_ID = "notif";
+        final int NOTIFICATION_ID = 001;
+
+        int sec = (int) (mTimeLeftInMillis / 1000) % 60;
+        if( sec == 20)
+        {
+
+            databaseCurrent.child("status").setValue("Order is on the way...");
+            Toast.makeText(CheckoutActivity.this, "WEW", Toast.LENGTH_SHORT).show();
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+            builder.setContentTitle("Food Delivery Status");
+            builder.setContentText("Your food is on its way....");
+            builder.setTicker("New Message Alert!");
+            builder.setSmallIcon(R.mipmap.ic_launcher);
+            builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+            Intent intent = new Intent(CheckoutActivity.this, profileActivity.class);
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(CheckoutActivity.this,0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            builder.setContentIntent(pendingIntent);
+
+            NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+            notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
+
+        }
+
+        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+
+//        mTextViewCountDown.setText(timeLeftFormatted);
     }
 
 

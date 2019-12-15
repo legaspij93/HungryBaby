@@ -45,13 +45,6 @@ public class CartActivity extends AppCompatActivity {
     ImageView trashBtn;
     DatabaseReference databaseCarts, databaseUsers;
 
-    private CountDownTimer mCountDownTimer;
-    private static final long START_TIME_IN_MILLIS = 15000;
-
-    private boolean mTimerRunning;
-    private TextView mTextViewCountDown, stat;
-    private long mTimeLeftInMillis;
-    private long mEndTime;
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser firebaseUser = mAuth.getCurrentUser();
@@ -163,70 +156,6 @@ public class CartActivity extends AppCompatActivity {
 //        startTimer();
     }
 
-    private void resetTimer() {
-        mTimeLeftInMillis = START_TIME_IN_MILLIS;
-//        updateCountDownText();
-    }
 
-    private void startTimer() {
-        mEndTime = START_TIME_IN_MILLIS + mTimeLeftInMillis;
-//        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
-
-        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
-
-
-            }
-
-            @Override
-            public void onFinish() {
-                mTimerRunning = false;
-                Toast.makeText(CartActivity.this, "Timer Finish", Toast.LENGTH_SHORT).show();
-
-
-            }
-        }.start();
-
-        mTimerRunning = true;
-    }
-
-    private void updateCountDownText() {
-        final String CHANNEL_ID = "notif";
-        final int NOTIFICATION_ID = 001;
-
-        int sec = (int) (mTimeLeftInMillis / 1000) % 60;
-        if( sec == 7)
-        {
-
-            databaseUsers.child(userID).child("address").setValue("Quezon City");
-            Toast.makeText(CartActivity.this, "WEW", Toast.LENGTH_SHORT).show();
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
-            builder.setContentTitle("Food Delivery Status");
-            builder.setContentText("Your food is on its way....");
-            builder.setTicker("New Message Alert!");
-            builder.setSmallIcon(R.mipmap.ic_launcher);
-            builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-            Intent intent = new Intent(CartActivity.this, profileActivity.class);
-
-            PendingIntent pendingIntent = PendingIntent.getActivity(CartActivity.this,0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
-            builder.setContentIntent(pendingIntent);
-
-            NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
-            notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
-
-
-        }
-
-        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
-
-        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-
-//        mTextViewCountDown.setText(timeLeftFormatted);
-    }
 
 }
