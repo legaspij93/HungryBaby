@@ -16,6 +16,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.hungrybaby.Model.Cart;
+import com.example.hungrybaby.Model.CurrentOrder;
 import com.example.hungrybaby.Model.Order;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +33,7 @@ import java.util.Locale;
 
 public class CheckoutActivity extends AppCompatActivity {
 
-    DatabaseReference databaseUsers, databaseOrders;
+    DatabaseReference databaseUsers, databaseOrders, databaseCurrent;
     FirebaseAuth mAuth;
     Intent cartIntent;
 
@@ -56,6 +57,7 @@ public class CheckoutActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
         databaseOrders = FirebaseDatabase.getInstance().getReference("orders");
+        databaseCurrent = FirebaseDatabase.getInstance().getReference("currentOrder");
 
         databaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -89,6 +91,32 @@ public class CheckoutActivity extends AppCompatActivity {
         Bundle cartBundle = cartIntent.getBundleExtra("BUNDLE");
         final List<Cart> carts = (List<Cart>) cartBundle.getSerializable("CARTLIST");
 
+        databaseCurrent.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String id = databaseCurrent.push().getKey();
+
+
+                CurrentOrder order = new CurrentOrder();
+
+                Date date = new Date(System.currentTimeMillis());
+                String timestamp = formatter.format(date);
+
+                order.setOrderId(id);
+                order.setUser(mAuth.getCurrentUser().getEmail());
+                order.setOrders(carts);
+                order.setDeliverAddress(addressInput.getText().toString());
+                order.setTotalCost(cartIntent.getStringExtra("TOTAL"));
+                order.setDateOrdered(timestamp);
+                databaseCurrent.child(id).setValue(order);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         databaseOrders.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -114,6 +142,8 @@ public class CheckoutActivity extends AppCompatActivity {
 
             }
         });
+
+
 
         Toast.makeText(this, "Order Success!", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(CheckoutActivity.this, OrderActivity.class);
