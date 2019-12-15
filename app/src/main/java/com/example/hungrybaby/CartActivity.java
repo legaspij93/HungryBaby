@@ -152,8 +152,8 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public void checkoutOrder(View v){
-//        Intent intent = new Intent(CartActivity.this, profileActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
+        startActivity(intent);
 //        resetTimer();
 //        startTimer();
     }
