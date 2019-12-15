@@ -48,7 +48,7 @@ public class profileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
 
-        mTextViewCountDown = findViewById(R.id.text_view_countdown);
+//        mTextViewCountDown = findViewById(R.id.text_view_countdown);
         stat = findViewById(R.id.cash);
 //        resetTimer();
 //        startTimer();
@@ -62,7 +62,7 @@ public class profileActivity extends AppCompatActivity {
         contact = findViewById(R.id.contact);
         address = findViewById(R.id.address);
         logoutBtn = findViewById(R.id.logoutBtn);
-        stat = findViewById(R.id.status);
+//        stat = findViewById(R.id.status);
 
         userName.setText(mAuth.getCurrentUser().getDisplayName());
         emailAddress.setText(mAuth.getCurrentUser().getEmail());

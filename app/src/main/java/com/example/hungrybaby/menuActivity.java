@@ -39,6 +39,8 @@ public class menuActivity extends AppCompatActivity {
     private FirebaseRecyclerOptions<Item> items;
     private FirebaseRecyclerAdapter<Item, ItemViewHolder> adapter;
 
+    private String category;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -53,6 +55,9 @@ public class menuActivity extends AppCompatActivity {
 //        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        Intent intent = getIntent();
+        category = intent.getStringExtra("CAT");
 
         databaseMenu = FirebaseDatabase.getInstance().getReference("items");
 
@@ -89,7 +94,7 @@ public class menuActivity extends AppCompatActivity {
             }
         });
 
-        items = new FirebaseRecyclerOptions.Builder<Item>().setQuery(databaseMenu, Item.class).build();
+        items = new FirebaseRecyclerOptions.Builder<Item>().setQuery(databaseMenu.child(category), Item.class).build();
 
         adapter = new FirebaseRecyclerAdapter<Item, ItemViewHolder>(items) {
             @Override
@@ -108,6 +113,7 @@ public class menuActivity extends AppCompatActivity {
                 itemViewHolder.price.setText(item.getPrice());
                 itemViewHolder.name.setText(item.getItemName());
                 itemViewHolder.setImageLink(item.getImage());
+                itemViewHolder.setCategory(category);
 
             }
 

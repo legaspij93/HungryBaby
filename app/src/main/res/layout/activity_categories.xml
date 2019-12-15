@@ -42,7 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/toolbarLayout"
             android:layout_marginTop="20dp"
-            android:background="@drawable/shadow">
+            android:background="@drawable/shadow"
+            android:onClick="catFries">
 
             <ImageView
                 android:id="@+id/itemImage"
@@ -72,7 +73,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/categoryOne"
             android:layout_marginTop="20dp"
-            android:background="@drawable/shadow">
+            android:background="@drawable/shadow"
+            android:onClick="catBurgers">
 
             <ImageView
                 android:id="@+id/itemImage1"
@@ -102,7 +104,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/categoryTwo"
             android:layout_marginTop="20dp"
-            android:background="@drawable/shadow">
+            android:background="@drawable/shadow"
+            android:onClick="catWings">
 
             <ImageView
                 android:id="@+id/itemImage2"
@@ -132,7 +135,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/categoryThree"
             android:layout_marginTop="20dp"
-            android:background="@drawable/shadow">
+            android:background="@drawable/shadow"
+            android:onClick="catDrinks">
 
             <ImageView
                 android:id="@+id/itemImage3"
