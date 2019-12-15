@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hungrybaby.R;
@@ -25,6 +27,8 @@ import com.google.firebase.database.ValueEventListener;
 public class loginActivity extends AppCompatActivity {
 
     EditText emailInput, passwordInput;
+    TextView text;
+    Typeface font;
 
     DatabaseReference databaseUsers, databaseCart;
 
@@ -36,6 +40,12 @@ public class loginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //this is in charge of applying the font
+        text = (TextView) findViewById(R.id.logoName);
+        font = Typeface.createFromAsset(this.getAssets(),"fonts/Baloo-Regular.ttf");
+        text.setTypeface(font);
+
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
 
