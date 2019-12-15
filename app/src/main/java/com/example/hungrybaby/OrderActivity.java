@@ -17,7 +17,7 @@ public class OrderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
+        setContentView(R.layout.activity_no_order);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,10 +51,5 @@ public class OrderActivity extends AppCompatActivity {
                 return false;
             }
         });
-    }
-
-    public void orderNow(View v){
-        Intent intent = new Intent(OrderActivity.this, menuActivity.class);
-        startActivity(intent);
     }
 }

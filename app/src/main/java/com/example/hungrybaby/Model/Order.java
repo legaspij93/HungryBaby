@@ -8,17 +8,19 @@ public class Order {
     private String totalCost;
     private String deliverAddress;
     private String user;
+    private String dateOrdered;
 
     public Order(){
 
     }
 
-    public Order(String orderId, List<Cart> orders, String totalCost, String deliverAddress, String user){
+    public Order(String orderId, List<Cart> orders, String totalCost, String deliverAddress, String user, String dateOrdered){
         this.orderId = orderId;
         this.orders = orders;
         this.totalCost = totalCost;
         this.deliverAddress = deliverAddress;
         this.user = user;
+        this.dateOrdered = dateOrdered;
     }
 
     public String getOrderId() {
@@ -59,6 +61,14 @@ public class Order {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getDateOrdered() {
+        return dateOrdered;
+    }
+
+    public void setDateOrdered(String dateOrdered) {
+        this.dateOrdered = dateOrdered;
     }
 }
 

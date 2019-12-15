@@ -2,10 +2,11 @@ package com.example.hungrybaby.Model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @IgnoreExtraProperties
-public class Cart {
+public class Cart implements Serializable {
     private String order;
     private String cost;
     private int quantity;

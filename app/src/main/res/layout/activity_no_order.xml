@@ -46,17 +46,6 @@
             android:layout_marginBottom="10dp"
             />
 
-        <Button
-            android:id="@+id/order"
-            android:text="Order Now"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/orderDescription"
-            android:background="@color/colorWhite"
-            android:layout_centerHorizontal="true"
-            android:onClick="orderNow"/>
-
-
     </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
