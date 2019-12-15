@@ -50,8 +50,8 @@ public class profileActivity extends AppCompatActivity {
 
         mTextViewCountDown = findViewById(R.id.text_view_countdown);
         stat = findViewById(R.id.cash);
-        resetTimer();
-        startTimer();
+//        resetTimer();
+//        startTimer();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -108,12 +108,12 @@ public class profileActivity extends AppCompatActivity {
                         contact.setText(dataSnapshot1.child("contactNum").getValue(String.class));
                         address.setText(dataSnapshot1.child("address").getValue(String.class));
                     }
-                }
+                  }
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
 
@@ -156,7 +156,7 @@ public class profileActivity extends AppCompatActivity {
 
     private void resetTimer() {
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
-        updateCountDownText();
+//        updateCountDownText();
     }
 
     private void startTimer() {
@@ -209,7 +209,7 @@ public class profileActivity extends AppCompatActivity {
 
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
-        mTextViewCountDown.setText(timeLeftFormatted);
+//        mTextViewCountDown.setText(timeLeftFormatted);
     }
 
 }
