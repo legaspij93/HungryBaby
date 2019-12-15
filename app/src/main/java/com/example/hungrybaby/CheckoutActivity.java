@@ -167,6 +167,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
 
+
         Toast.makeText(this, "Order Success!", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(CheckoutActivity.this, OrderActivity.class);
         startActivity(intent);
@@ -196,6 +197,24 @@ public class CheckoutActivity extends AppCompatActivity {
                 mTimerRunning = false;
                 Toast.makeText(CheckoutActivity.this, "Timer Finish", Toast.LENGTH_SHORT).show();
 
+                databaseCurrent.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                            dataSnapshot1.getRef().removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                Intent intent = new Intent(CheckoutActivity.this, profileActivity.class);
+                startActivity(intent);
+
+
 
             }
         }.start();
@@ -212,7 +231,7 @@ public class CheckoutActivity extends AppCompatActivity {
         {
 
             databaseCurrent.child(idQuery).child("status").setValue("Order is on the way...");
-            Toast.makeText(CheckoutActivity.this, "WEW", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CheckoutActivity.this, "Order is on the way...", Toast.LENGTH_SHORT).show();
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
             builder.setContentTitle("Food Delivery Status");
             builder.setContentText("Your food is on its way....");
@@ -220,7 +239,7 @@ public class CheckoutActivity extends AppCompatActivity {
             builder.setSmallIcon(R.mipmap.ic_launcher);
             builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-            Intent intent = new Intent(CheckoutActivity.this, profileActivity.class);
+            Intent intent = new Intent(CheckoutActivity.this, OrderActivity.class);
 
             PendingIntent pendingIntent = PendingIntent.getActivity(CheckoutActivity.this,0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentIntent(pendingIntent);
@@ -234,7 +253,7 @@ public class CheckoutActivity extends AppCompatActivity {
         {
 
             databaseCurrent.child(idQuery).child("status").setValue("Driver is nearby...");
-            Toast.makeText(CheckoutActivity.this, "WEW", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CheckoutActivity.this, "Driver is nearby...", Toast.LENGTH_SHORT).show();
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
             builder.setContentTitle("Food Delivery Status");
             builder.setContentText("Driver is nearby....");
@@ -242,7 +261,7 @@ public class CheckoutActivity extends AppCompatActivity {
             builder.setSmallIcon(R.mipmap.ic_launcher);
             builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-            Intent intent = new Intent(CheckoutActivity.this, profileActivity.class);
+            Intent intent = new Intent(CheckoutActivity.this, OrderActivity.class);
 
             PendingIntent pendingIntent = PendingIntent.getActivity(CheckoutActivity.this,0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentIntent(pendingIntent);
@@ -256,7 +275,7 @@ public class CheckoutActivity extends AppCompatActivity {
         {
 
             databaseCurrent.child(idQuery).child("status").setValue("Your food has arrived...");
-            Toast.makeText(CheckoutActivity.this, "WEW", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CheckoutActivity.this, "Your food has arrived...", Toast.LENGTH_SHORT).show();
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
             builder.setContentTitle("Food Delivery Status");
             builder.setContentText("Your food has arrived");
@@ -264,7 +283,7 @@ public class CheckoutActivity extends AppCompatActivity {
             builder.setSmallIcon(R.mipmap.ic_launcher);
             builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-            Intent intent = new Intent(CheckoutActivity.this, profileActivity.class);
+            Intent intent = new Intent(CheckoutActivity.this, OrderActivity.class);
 
             PendingIntent pendingIntent = PendingIntent.getActivity(CheckoutActivity.this,0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentIntent(pendingIntent);
