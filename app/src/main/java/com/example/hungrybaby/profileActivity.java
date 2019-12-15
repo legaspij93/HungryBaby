@@ -212,4 +212,9 @@ public class profileActivity extends AppCompatActivity {
 //        mTextViewCountDown.setText(timeLeftFormatted);
 //    }
 //
+
+    public void viewHistory(View v){
+        Intent intent = new Intent(profileActivity.this, PastOrdersActivity.class);
+        startActivity(intent);
+    }
 }
