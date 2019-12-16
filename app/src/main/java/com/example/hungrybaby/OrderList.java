@@ -32,7 +32,7 @@ public class OrderList extends ArrayAdapter<Order> {
         TextView dateOrdered = (TextView) listViewOrder.findViewById(R.id.dateOrdered);
 
         Order order = orders.get(position);
-        orderNumber.setText(order.getOrderId());
+        orderNumber.setText(order.getOrderId().substring(0, 8));
         dateOrdered.setText(order.getDateOrdered());
 
         return listViewOrder;

@@ -88,7 +88,9 @@ public class PastOrdersActivity extends AppCompatActivity {
                     //getting blog
                     Order order = postSnapshot.getValue(Order.class);
                     //adding blog to the list
-                    orders.add(order);
+                    if(order.getUser().equals(mAuth.getCurrentUser().getEmail())) {
+                        orders.add(order);
+                    }
                 }
 
                 //creating adapter

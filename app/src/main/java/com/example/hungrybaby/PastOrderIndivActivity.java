@@ -20,7 +20,7 @@ import java.util.List;
 
 public class PastOrderIndivActivity extends AppCompatActivity {
 
-    TextView deliveryAddress, subtotal, total;
+    TextView deliveryAddress, subtotal, total, orderLabel;
 
     ListView listViewOrder;
 
@@ -37,6 +37,7 @@ public class PastOrderIndivActivity extends AppCompatActivity {
         deliveryAddress = findViewById(R.id.deliveryAddress);
         subtotal = findViewById(R.id.subtotal);
         total = findViewById(R.id.total);
+        orderLabel = findViewById(R.id.orderLabel);
 
         Intent intent = getIntent();
 
@@ -46,6 +47,7 @@ public class PastOrderIndivActivity extends AppCompatActivity {
         String tc = intent.getStringExtra("ORDER_TOTAL");
         int sub = Integer.parseInt(tc) - 50;
         subtotal.setText(Integer.toString(sub));
+        orderLabel.setText("Order #"+ intent.getStringExtra("ORDER_ID").substring(0,8));
     }
 
     @Override

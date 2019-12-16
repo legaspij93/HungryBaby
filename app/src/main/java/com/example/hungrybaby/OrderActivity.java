@@ -30,7 +30,7 @@ public class OrderActivity extends AppCompatActivity {
 
     DatabaseReference databaseCurrent;
 
-    TextView deliveryAddress, subtotal, total, status;
+    TextView deliveryAddress, subtotal, total, status, orderLabel;
     List<CurrentOrder> orders;
     List<Cart> carts;
 
@@ -53,7 +53,7 @@ public class OrderActivity extends AppCompatActivity {
         subtotal = findViewById(R.id.subtotal);
         total = findViewById(R.id.total);
         status = findViewById(R.id.status);
-
+        orderLabel = findViewById(R.id.orderLabel);
 //        databaseCurrent.addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -115,7 +115,7 @@ public class OrderActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        databaseCurrent.addValueEventListener(new ValueEventListener() {
+        databaseCurrent.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -147,6 +147,7 @@ public class OrderActivity extends AppCompatActivity {
                 deliveryAddress.setText(orders.get(0).getDeliverAddress());
                 total.setText(orders.get(0).getTotalCost());
                 status.setText(orders.get(0).getStatus());
+                orderLabel.setText("Order #"+ orders.get(0).getOrderId().substring(0, 8));
 
                 String tc = orders.get(0).getTotalCost();
                 int sub = Integer.parseInt(tc) - 50;
