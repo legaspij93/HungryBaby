@@ -1,6 +1,9 @@
 package com.example.hungrybaby;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -35,7 +38,7 @@ import java.util.Locale;
 
 public class CheckoutActivity extends AppCompatActivity {
 
-    DatabaseReference databaseUsers, databaseOrders, databaseCurrent;
+    DatabaseReference databaseUsers, databaseOrders, databaseCurrent, databaseCart;
     Intent cartIntent;
 
     EditText addressInput, contactNumber;
@@ -75,6 +78,7 @@ public class CheckoutActivity extends AppCompatActivity {
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
         databaseOrders = FirebaseDatabase.getInstance().getReference("orders");
         databaseCurrent = FirebaseDatabase.getInstance().getReference("currentOrder");
+        databaseCart = FirebaseDatabase.getInstance().getReference("cart");
 
         databaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -110,6 +114,20 @@ public class CheckoutActivity extends AppCompatActivity {
 
         Bundle cartBundle = cartIntent.getBundleExtra("BUNDLE");
         final List<Cart> carts = (List<Cart>) cartBundle.getSerializable("CARTLIST");
+
+        databaseCart.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    dataSnapshot1.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         databaseCurrent.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -195,7 +213,7 @@ public class CheckoutActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 mTimerRunning = false;
-                Toast.makeText(CheckoutActivity.this, "Timer Finish", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CheckoutActivity.this, "Your food has arrived...", Toast.LENGTH_SHORT).show();
 
                 databaseCurrent.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -211,8 +229,34 @@ public class CheckoutActivity extends AppCompatActivity {
                     }
                 });
 
-                Intent intent = new Intent(CheckoutActivity.this, profileActivity.class);
-                startActivity(intent);
+//                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
+//                builder.setContentTitle("Food Delivery Status");
+//                builder.setContentText("Your food is on its way....");
+//                builder.setTicker("New Message Alert!");
+//                builder.setSmallIcon(R.mipmap.ic_launcher);
+//                builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+//
+//                Intent intent = new Intent(CheckoutActivity.this, OrderActivity.class);
+//
+//                PendingIntent pendingIntent = PendingIntent.getActivity(CheckoutActivity.this,0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
+//                builder.setContentIntent(pendingIntent);
+//
+//                NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
+//                notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
+
+//                NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//                Notification myNotification = new Notification(R.drawable.ic_launcher_background, "Notification!", System.currentTimeMillis());
+//                    Context context = getApplicationContext();
+//                    String notificationTitle = "Exercise of Notification!";
+//                    String notificationText = "WEEEEEEEEE";
+//                    Intent myIntent = new Intent(CheckoutActivity.this, CheckoutActivity.class);
+//                    PendingIntent pendingIntent = PendingIntent.getActivity(CheckoutActivity.this, 0, myIntent, Intent.FILL_IN_ACTION);
+//                    myNotification.flags |= Notification.FLAG_AUTO_CANCEL;
+//                    myNotification.setLatestEventInfo(context,notificationTitle,notificationText,pendingIntent);
+//                    notificationManager.notify(1, myNotification);
+//
+//                Intent intent = new Intent(CheckoutActivity.this, profileActivity.class);
+//                startActivity(intent);
 
 
 
